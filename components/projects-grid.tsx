@@ -27,7 +27,7 @@ const projects = [
     title: "Tmus",
     category: "Web Design · Desktop",
     description: "Windows桌面应用时长可视化网页",
-    images: ["/tmus-cover.png", "\Slide 16_9 - 25.png", "\Slide 16_9 - 26.png"],
+    images: ["/tmus-cover.png", "/time-tracking-visualization-dashboard-interface.jpg"],
   },
 ]
 
