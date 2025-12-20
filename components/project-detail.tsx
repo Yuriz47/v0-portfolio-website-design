@@ -50,7 +50,7 @@ const projectDetails = {
     client: "效率工具产品",
     timeline: "2025年9月 - 11月",
     role: "UI/UX设计师",
-    images: ["/tmus-dashboard.jpg", "/Slide 16_9 - 25.png", "/Slide 16_9 - 26.png"],
+    images: ["/tmus-dashboard.jpg", "\Slide 16_9 - 25.png", "\Slide 16_9 - 26.png"],
     challenge:
       "Windows用户难以意识到自己在各个应用上的时间分配，需要一个清晰、美观的可视化界面来呈现时间使用情况，并提供有价值的洞察。",
     solution:
