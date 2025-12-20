@@ -1,0 +1,509 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 10 10 15;
+  --foreground: 240 245 255;
+  --card: 20 20 30;
+  --card-foreground: 240 245 255;
+  --popover: 20 20 30;
+  --popover-foreground: 240 245 255;
+  --primary: 100 180 255;
+  --primary-foreground: 10 10 15;
+  --secondary: 40 40 55;
+  --secondary-foreground: 240 245 255;
+  --muted: 30 30 45;
+  --muted-foreground: 160 170 185;
+  --accent: 123 97 255;
+  --accent-foreground: 240 245 255;
+  --destructive: 239 68 68;
+  --destructive-foreground: 255 255 255;
+  --border: 40 40 55;
+  --input: 40 40 55;
+  --ring: 123 97 255;
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0.75rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+  --glass-bg: 20 20 30;
+  --glass-border: 100 180 255;
+  --neon-blue: 100 180 255;
+  --neon-purple: 160 120 255;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.145 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.145 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.985 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.269 0 0);
+  --input: oklch(0.269 0 0);
+  --ring: oklch(0.439 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
+}
+
+@theme inline {
+  --font-sans: "Inter", "Geist", "Geist Fallback";
+  --font-mono: "Geist Mono", "Geist Mono Fallback";
+  --color-background: rgb(var(--background));
+  --color-foreground: rgb(var(--foreground));
+  --color-card: rgb(var(--card));
+  --color-card-foreground: rgb(var(--card-foreground));
+  --color-popover: rgb(var(--popover));
+  --color-popover-foreground: rgb(var(--popover-foreground));
+  --color-primary: rgb(var(--primary));
+  --color-primary-foreground: rgb(var(--primary-foreground));
+  --color-secondary: rgb(var(--secondary));
+  --color-secondary-foreground: rgb(var(--secondary-foreground));
+  --color-muted: rgb(var(--muted));
+  --color-muted-foreground: rgb(var(--muted-foreground));
+  --color-accent: rgb(var(--accent));
+  --color-accent-foreground: rgb(var(--accent-foreground));
+  --color-destructive: rgb(var(--destructive));
+  --color-destructive-foreground: rgb(var(--destructive-foreground));
+  --color-border: rgb(var(--border));
+  --color-input: rgb(var(--input));
+  --color-ring: rgb(var(--ring));
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* 优化Canvas渲染性能 */
+  canvas {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+
+  /* 确保内容层在光束之上 */
+  section {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+/* 更新玻璃态效果为深色科技风格 */
+.glass-card {
+  background: rgba(var(--glass-bg), 0.6);
+  backdrop-filter: blur(24px) saturate(150%);
+  -webkit-backdrop-filter: blur(24px) saturate(150%);
+  border: 1px solid rgba(var(--neon-blue), 0.15);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.4), inset 0 1px 1px 0 rgba(var(--neon-blue), 0.1);
+}
+
+.glass-card-strong {
+  background: rgba(var(--glass-bg), 0.8);
+  backdrop-filter: blur(32px) saturate(180%);
+  -webkit-backdrop-filter: blur(32px) saturate(180%);
+  border: 1px solid rgba(var(--neon-blue), 0.25);
+  box-shadow: 0 12px 48px 0 rgba(0, 0, 0, 0.5), inset 0 1px 1px 0 rgba(var(--neon-blue), 0.15);
+}
+
+/* 更新按钮渐变为科技蓝色系 */
+.glass-button-gradient {
+  background: linear-gradient(90deg, rgba(var(--neon-blue), 1) 0%, rgba(var(--neon-purple), 1) 100%);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(var(--neon-blue), 0.4), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.glass-button-gradient:hover {
+  background: linear-gradient(90deg, rgba(var(--neon-blue), 1) 0%, rgba(var(--neon-purple), 1) 100%);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 12px 48px 0 rgba(var(--neon-blue), 0.6), 0 0 60px rgba(var(--neon-blue), 0.3), inset 0 1px 1px 0
+    rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.glass-button {
+  background: rgba(75, 58, 233, 0.1);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(75, 58, 233, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(75, 58, 233, 0.15), inset 0 1px 1px 0 rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.glass-button:hover {
+  background: rgba(75, 58, 233, 0.2);
+  border-color: rgba(75, 58, 233, 0.5);
+  box-shadow: 0 12px 48px 0 rgba(75, 58, 233, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.4);
+  transform: translateY(-2px);
+}
+
+/* 更新渐变边框为科技蓝紫色系 */
+.gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: 1.5rem;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(var(--neon-blue), 1) 0%, rgba(var(--neon-purple), 1) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+.diffused-circles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* 更新弥散圆圈为更强的发光效果 */
+.diffused-circles::before {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(
+    circle,
+    rgba(var(--neon-blue), 0.2) 0%,
+    rgba(var(--neon-blue), 0.05) 50%,
+    rgba(var(--neon-blue), 0) 70%
+  );
+  filter: blur(60px);
+  top: -300px;
+  right: -200px;
+  animation: float 20s ease-in-out infinite;
+}
+
+.diffused-circles::after {
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(
+    circle,
+    rgba(var(--neon-purple), 0.18) 0%,
+    rgba(var(--neon-purple), 0.08) 50%,
+    rgba(var(--neon-purple), 0) 70%
+  );
+  filter: blur(80px);
+  bottom: -400px;
+  left: -300px;
+  animation: float 25s ease-in-out infinite reverse;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(50px, -50px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+@keyframes card-hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* 添加3D线框装饰效果 */
+.wireframe-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(var(--neon-blue), 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(var(--neon-blue), 0.03) 1px, transparent 1px);
+  background-size: 100px 100px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.geometric-accent {
+  position: absolute;
+  border: 1px solid rgba(var(--neon-blue), 0.2);
+  border-radius: 50%;
+  animation: rotate-slow 30s linear infinite;
+}
+
+@keyframes rotate-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 滚动渐显动画 */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 悬浮缩放效果 */
+.hover-scale {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.02);
+  box-shadow: 0 20px 60px rgba(var(--neon-blue), 0.3);
+}
+
+/* 故障艺术效果 - 优雅且精致 */
+.glitch-container {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-text {
+  position: relative;
+  display: inline-block;
+}
+
+/* 故障效果 - RGB偏移 */
+.glitch-text.glitching {
+  animation: glitch-skew 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glitch-text.glitching::before,
+.glitch-text.glitching::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-text.glitching::before {
+  animation: glitch-rgb-1 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: rgba(0, 255, 255, 0.7);
+  z-index: -1;
+}
+
+.glitch-text.glitching::after {
+  animation: glitch-rgb-2 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  color: rgba(255, 0, 255, 0.7);
+  z-index: -2;
+}
+
+@keyframes glitch-skew {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(2px, -1px);
+  }
+  60% {
+    transform: translate(-1px, 2px);
+  }
+  80% {
+    transform: translate(1px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes glitch-rgb-1 {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-3px, 2px);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate(3px, -2px);
+    opacity: 0.6;
+  }
+  60% {
+    transform: translate(-2px, 3px);
+    opacity: 0.7;
+  }
+  80% {
+    transform: translate(2px, -3px);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+@keyframes glitch-rgb-2 {
+  0% {
+    transform: translate(0);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(2px, -2px);
+    opacity: 0.7;
+  }
+  40% {
+    transform: translate(-2px, 2px);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translate(3px, -1px);
+    opacity: 0.6;
+  }
+  80% {
+    transform: translate(-3px, 1px);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(0);
+    opacity: 0;
+  }
+}
+
+/* 图片故障效果 */
+.glitch-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-image.glitching {
+  animation: image-glitch 0.4s steps(2, end);
+}
+
+@keyframes image-glitch {
+  0% {
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    transform: translate(-3px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    transform: translate(3px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    transform: translate(-2px, -2px);
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    transform: translate(0);
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* 卡片悬停故障效果 */
+.glitch-card {
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glitch-card:hover {
+  animation: card-glitch 0.3s ease-out;
+}
+
+@keyframes card-glitch {
+  0%,
+  100% {
+    transform: translate(0);
+    box-shadow: 0 20px 60px rgba(var(--neon-blue), 0.3);
+  }
+  20% {
+    transform: translate(-1px, 1px);
+    box-shadow: -3px 0 rgba(0, 255, 255, 0.3), 3px 0 rgba(255, 0, 255, 0.3);
+  }
+  40% {
+    transform: translate(1px, -1px);
+    box-shadow: 3px 0 rgba(0, 255, 255, 0.3), -3px 0 rgba(255, 0, 255, 0.3);
+  }
+  60% {
+    transform: translate(-1px, -1px);
+    box-shadow: -2px 0 rgba(0, 255, 255, 0.2), 2px 0 rgba(255, 0, 255, 0.2);
+  }
+  80% {
+    transform: translate(1px, 1px);
+    box-shadow: 2px 0 rgba(0, 255, 255, 0.2), -2px 0 rgba(255, 0, 255, 0.2);
+  }
+}
