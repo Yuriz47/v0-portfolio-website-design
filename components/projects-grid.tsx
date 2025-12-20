@@ -6,7 +6,6 @@ import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { GlitchText } from "./glitch-text"
 
 const projects = [
   {
@@ -14,21 +13,21 @@ const projects = [
     title: "PUPPY GO",
     category: "Mobile App · AI Design",
     description: "AI智能规划+情感激励型运动辅助APP,已落地项目",
-    images: ["/puppy-go-cover.png", "/puppy-go-app-interface-design.jpg"],
+    images: ["/puppy-go-cover.png", "/puppy-go-record.png", "/puppy-go-data.png"],
   },
   {
     id: "xingwuai",
     title: "行无碍",
     category: "Platform Design · AI",
     description: "AI赋能的全民无障碍出行平台",
-    images: ["/xingwuai-cover.png", "/accessible-transportation-platform-app.jpg"],
+    images: ["/xingwuai-cover.png", "/xingwuai-navigation.png", "/xingwuai-location.png", "/xingwuai-community.png"],
   },
   {
     id: "tmus",
     title: "Tmus",
     category: "Web Design · Desktop",
     description: "Windows桌面应用时长可视化网页",
-    images: ["/tmus-cover.png", "/time-tracking-visualization-dashboard-interface.jpg"],
+    images: ["/tmus-cover.png", "/Slide 16_9 - 25.png", "/Slide 16_9 - 26.png"],
   },
 ]
 
@@ -70,9 +69,7 @@ export function ProjectsGrid() {
             <p className="text-sm uppercase tracking-[0.3em] font-light" style={{ color: "rgb(100, 180, 255)" }}>
               精选项目
             </p>
-            <GlitchText triggerOnScroll triggerOnHover>
-              <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">我的作品集</h2>
-            </GlitchText>
+            <h2 className="text-5xl md:text-6xl font-black tracking-tighter text-white">我的作品集</h2>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -80,7 +77,7 @@ export function ProjectsGrid() {
               <Link
                 key={project.id}
                 href={`#project-${project.id}`}
-                className="group cursor-pointer block glitch-card"
+                className="group cursor-pointer block hover-scale"
                 onMouseEnter={() => setHoveredId(project.id)}
                 onMouseLeave={() => setHoveredId(null)}
                 style={{
@@ -142,9 +139,7 @@ export function ProjectsGrid() {
                     >
                       {project.category}
                     </p>
-                    <GlitchText triggerOnHover>
-                      <h3 className="text-2xl font-bold tracking-tight text-white">{project.title}</h3>
-                    </GlitchText>
+                    <h3 className="text-2xl font-bold tracking-tight text-white">{project.title}</h3>
                     <p className="text-sm font-light text-gray-400 leading-loose tracking-wide">
                       {project.description}
                     </p>

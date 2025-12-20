@@ -6,6 +6,7 @@ const navItems = [
   { label: "首页", href: "#hero" },
   { label: "关于", href: "#about" },
   { label: "项目", href: "#projects" },
+  { label: "联系", href: "#contact" },
 ]
 
 export function Navigation() {
@@ -21,15 +22,12 @@ export function Navigation() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      <div
-        className={`${
-          scrolled ? "bg-[rgba(10,10,15,0.95)]" : "bg-[rgba(10,10,15,0.8)]"
-        } backdrop-blur-xl transition-all duration-300 border-b border-[rgba(100,180,255,0.1)]`}
-      >
+      {/* Made navigation bar fully opaque instead of transparent/glass */}
+      <div className="bg-[#0A0A0F] transition-all duration-300 border-b border-[rgba(100,180,255,0.1)]">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="text-xl font-bold tracking-wider text-white">Portfolio</div>
 
-          <div className="flex items-center gap-10">
+          <div className="hidden md:flex items-center gap-10">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -40,6 +38,8 @@ export function Navigation() {
               </a>
             ))}
           </div>
+
+          {/* Removed contact button as requested */}
         </div>
       </div>
     </nav>

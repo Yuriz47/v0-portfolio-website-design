@@ -1,7 +1,8 @@
 "use client"
 
 import Image from "next/image"
-import { Mail } from "lucide-react"
+import { Mail, ChevronLeft, ChevronRight } from "lucide-react"
+import { useState } from "react"
 
 const projectDetails = {
   "puppy-go": {
@@ -9,13 +10,13 @@ const projectDetails = {
     subtitle: "AI智能规划+情感激励型运动辅助APP",
     description:
       "一款已落地的创新运动健康应用，通过AI技术为用户提供个性化运动方案，并运用情感激励机制帮助用户养成健康的运动习惯。",
-    client: "健康科技公司",
-    timeline: "2023年9月 - 2024年3月",
+    client: "Z世代",
+    timeline: "2024年12月 - 至今",
     role: "首席UI/UX设计师",
-    image: "/puppy-go-cover.png",
+    images: ["/puppy-go-cover.png", "/puppy-go-record.png", "/puppy-go-data.png"],
     challenge: "现有运动应用缺乏情感连接，用户难以坚持。需要创造一个既智能又充满情感的运动体验，让用户真正爱上运动。",
     solution:
-      "设计了可爱的宠物狗陪伴系统，结合AI智能规划，为每位用户打造专属运动计划。通过情感化的交互设计和激励机制，提升用户粘性和运动积极性。",
+      "设计了可爱的小狗IP陪伴系统,结合AI智能规划，为每位用户打造专属运动计划。通过情感化的交互设计和激励机制，提升用户粘性和运动积极性。",
     results: [
       { value: "85%", label: "用户留存率" },
       { value: "4.9/5", label: "应用评分" },
@@ -28,9 +29,9 @@ const projectDetails = {
     description:
       "致力于为残障人士和特殊需求群体打造的智能出行平台，通过AI技术提供无障碍路线规划、实时导航和社区互助功能。",
     client: "社会公益项目",
-    timeline: "2024年1月 - 6月",
+    timeline: "2024年12月 - 2025年10月",
     role: "产品设计负责人",
-    image: "/xingwuai-cover.png",
+    images: ["/xingwuai-cover.png", "/xingwuai-navigation.png", "/xingwuai-location.png", "/xingwuai-community.png"],
     challenge:
       "残障人士出行面临信息不透明、路线规划困难等诸多障碍。需要设计一个真正理解用户需求、易用且全面的无障碍出行解决方案。",
     solution:
@@ -44,11 +45,12 @@ const projectDetails = {
   tmus: {
     title: "Tmus",
     subtitle: "Windows桌面应用时长可视化",
-    description: "一款帮助用户了解和管理Windows桌面应用使用时长的可视化工具，通过精美的数据呈现帮助用户提升时间管理效率。",
+    description:
+      "一款帮助用户了解和管理Windows桌面应用使用时长的可视化工具，通过精美的数据呈现帮助用户提升时间管理效率。",
     client: "效率工具产品",
     timeline: "2025年9月 - 11月",
     role: "UI/UX设计师",
-    image: "/time-tracking-visualization-dashboard-interface.jpg",
+    images: ["/tmus-dashboard.jpg", "/Slide 16_9 - 25.png", "/Slide 16_9 - 26.png"],
     challenge:
       "Windows用户难以意识到自己在各个应用上的时间分配，需要一个清晰、美观的可视化界面来呈现时间使用情况，并提供有价值的洞察。",
     solution:
@@ -62,6 +64,26 @@ const projectDetails = {
 }
 
 export function ProjectDetail() {
+  const [currentImageIndex, setCurrentImageIndex] = useState<Record<string, number>>({
+    "puppy-go": 0,
+    xingwuai: 0,
+    tmus: 0,
+  })
+
+  const handlePrevImage = (projectId: string, totalImages: number) => {
+    setCurrentImageIndex((prev) => ({
+      ...prev,
+      [projectId]: prev[projectId] > 0 ? prev[projectId] - 1 : totalImages - 1,
+    }))
+  }
+
+  const handleNextImage = (projectId: string, totalImages: number) => {
+    setCurrentImageIndex((prev) => ({
+      ...prev,
+      [projectId]: (prev[projectId] + 1) % totalImages,
+    }))
+  }
+
   return (
     <>
       {Object.entries(projectDetails).map(([id, project]) => (
@@ -112,14 +134,45 @@ export function ProjectDetail() {
                   </div>
                 </div>
 
-                <div className="rounded-2xl overflow-hidden border border-[rgba(100,180,255,0.2)] hover-scale">
-                  <Image
-                    src={project.image || "/placeholder.svg"}
-                    alt={project.title}
-                    width={1200}
-                    height={800}
-                    className="w-full h-auto"
-                  />
+                <div className="relative rounded-2xl overflow-hidden border border-[rgba(100,180,255,0.2)] group/carousel">
+                  <div className="relative aspect-video">
+                    <Image
+                      src={project.images[currentImageIndex[id]] || "/placeholder.svg"}
+                      alt={`${project.title} - Image ${currentImageIndex[id] + 1}`}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+
+                  {project.images.length > 1 && (
+                    <>
+                      <button
+                        onClick={() => handlePrevImage(id, project.images.length)}
+                        className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft className="w-6 h-6" />
+                      </button>
+                      <button
+                        onClick={() => handleNextImage(id, project.images.length)}
+                        className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/50 backdrop-blur-sm flex items-center justify-center text-white opacity-0 group-hover/carousel:opacity-100 transition-opacity duration-300 hover:bg-black/70 z-10"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight className="w-6 h-6" />
+                      </button>
+
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                        {project.images.map((_, idx) => (
+                          <div
+                            key={idx}
+                            className={`h-2 rounded-full transition-all duration-300 ${
+                              idx === currentImageIndex[id] ? "w-8 bg-white" : "w-2 bg-white/50"
+                            }`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
                 </div>
 
                 <div className="space-y-10">

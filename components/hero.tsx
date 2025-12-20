@@ -3,7 +3,6 @@
 import { ArrowDown } from "lucide-react"
 import { NeonParticles } from "./neon-particles"
 import { MagneticButton } from "./magnetic-button"
-import { GlitchText } from "./glitch-text"
 
 export function Hero() {
   const scrollToProjects = () => {
@@ -36,11 +35,9 @@ export function Hero() {
             <p className="text-sm uppercase tracking-[0.3em] font-light" style={{ color: "rgb(100, 180, 255)" }}>
               UI/UX Designer
             </p>
-            <GlitchText className="text-7xl md:text-9xl font-black tracking-tighter" triggerOnScroll triggerOnHover>
-              <h1 className="text-balance bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-100 to-gray-400">
-                Yuriz
-              </h1>
-            </GlitchText>
+            <h1 className="text-7xl md:text-9xl font-black tracking-tighter text-balance bg-clip-text text-transparent bg-gradient-to-br from-white via-gray-100 to-gray-400">
+              Yuriz
+            </h1>
             <p className="text-lg md:text-2xl font-light tracking-wide text-gray-400 max-w-2xl mx-auto text-pretty leading-relaxed">
               专注于界面设计与用户体验
               <br />
