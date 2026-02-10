@@ -20,9 +20,9 @@ function FloatingOrb({ size, color, initialX, initialY, speed }: {
         left: initialX,
         top: initialY,
         animation: `heroFloat ${speed}s ease-in-out infinite`,
-        boxShadow: color === "#ffffff"
-          ? "0 0 20px rgba(255,255,255,0.3)"
-          : "0 0 30px rgba(30,60,255,0.4)",
+        boxShadow: color.includes("255,0.") || color.includes("160,255") || color.includes("200,255")
+          ? "0 0 25px rgba(120,160,255,0.3)"
+          : "0 0 40px rgba(30,60,255,0.5)",
       }}
     />
   )
@@ -40,7 +40,7 @@ function DiagonalLine({ x, y, rotation, length }: {
       style={{
         width: length,
         height: 3,
-        background: "#1A3CFF",
+        background: "rgba(40, 80, 255, 0.7)",
         left: x,
         top: y,
         transform: `rotate(${rotation}deg)`,
@@ -78,7 +78,7 @@ export function Hero() {
     const offset = (layers - i) * 2.5
     const progress = i / layers
     // gradient: top is blue, bottom fades to white/transparent
-    const opacity = 0.12 + progress * 0.08
+    const opacity = 0.08 + progress * 0.12
     return (
       <span
         key={i}
@@ -86,7 +86,7 @@ export function Hero() {
         aria-hidden="true"
         style={{
           transform: `translate(${offset}px, ${offset}px)`,
-          WebkitTextStroke: "1.5px rgba(20, 30, 80, " + opacity + ")",
+          WebkitTextStroke: "1.5px rgba(60, 100, 255, " + opacity + ")",
           color: "transparent",
         }}
       >
@@ -100,16 +100,17 @@ export function Hero() {
       id="hero"
       className="min-h-screen flex items-center justify-center relative overflow-hidden"
     >
-      {/* Background gradient: blue corners fading to white center */}
+      {/* Background gradient: blue-black */}
       <div
         className="absolute inset-0"
         style={{
           background: `
-            radial-gradient(ellipse at 0% 0%, rgba(30, 60, 255, 0.6) 0%, transparent 50%),
-            radial-gradient(ellipse at 100% 100%, rgba(30, 60, 255, 0.5) 0%, transparent 50%),
-            radial-gradient(ellipse at 100% 0%, rgba(80, 120, 255, 0.15) 0%, transparent 40%),
-            radial-gradient(ellipse at 0% 100%, rgba(80, 120, 255, 0.15) 0%, transparent 40%),
-            linear-gradient(180deg, #e8ecff 0%, #ffffff 50%, #dce3ff 100%)
+            radial-gradient(ellipse at 0% 0%, rgba(30, 60, 255, 0.35) 0%, transparent 50%),
+            radial-gradient(ellipse at 100% 100%, rgba(20, 50, 220, 0.3) 0%, transparent 50%),
+            radial-gradient(ellipse at 50% 40%, rgba(40, 70, 255, 0.08) 0%, transparent 50%),
+            radial-gradient(ellipse at 100% 0%, rgba(60, 90, 255, 0.1) 0%, transparent 40%),
+            radial-gradient(ellipse at 0% 100%, rgba(60, 90, 255, 0.1) 0%, transparent 40%),
+            linear-gradient(160deg, #050810 0%, #0a0e1a 30%, #080c18 60%, #030508 100%)
           `,
         }}
       />
@@ -119,7 +120,7 @@ export function Hero() {
 
       {/* Noise texture overlay */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
           backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
           backgroundSize: "128px 128px",
@@ -128,21 +129,21 @@ export function Hero() {
 
       {/* Floating geometric orbs */}
       <FloatingOrb size={40} color="#1A3CFF" initialX="12%" initialY="25%" speed={14} />
-      <FloatingOrb size={24} color="#ffffff" initialX="28%" initialY="12%" speed={18} />
+      <FloatingOrb size={24} color="rgba(120,160,255,0.6)" initialX="28%" initialY="12%" speed={18} />
       <FloatingOrb size={50} color="#1A3CFF" initialX="82%" initialY="18%" speed={16} />
-      <FloatingOrb size={18} color="#ffffff" initialX="75%" initialY="38%" speed={20} />
+      <FloatingOrb size={18} color="rgba(180,200,255,0.4)" initialX="75%" initialY="38%" speed={20} />
       <FloatingOrb size={36} color="#1A3CFF" initialX="8%" initialY="78%" speed={15} />
-      <FloatingOrb size={22} color="#ffffff" initialX="88%" initialY="72%" speed={19} />
+      <FloatingOrb size={22} color="rgba(120,160,255,0.5)" initialX="88%" initialY="72%" speed={19} />
       <FloatingOrb size={14} color="rgba(30,60,255,0.5)" initialX="60%" initialY="8%" speed={22} />
 
       {/* Crosshair decorations */}
       <div className="absolute pointer-events-none" style={{ right: "15%", top: "15%" }}>
         <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-          <circle cx="16" cy="16" r="10" stroke="rgba(30,60,255,0.3)" strokeWidth="1" />
-          <line x1="16" y1="2" x2="16" y2="8" stroke="rgba(30,60,255,0.3)" strokeWidth="1" />
-          <line x1="16" y1="24" x2="16" y2="30" stroke="rgba(30,60,255,0.3)" strokeWidth="1" />
-          <line x1="2" y1="16" x2="8" y2="16" stroke="rgba(30,60,255,0.3)" strokeWidth="1" />
-          <line x1="24" y1="16" x2="30" y2="16" stroke="rgba(30,60,255,0.3)" strokeWidth="1" />
+          <circle cx="16" cy="16" r="10" stroke="rgba(80,120,255,0.25)" strokeWidth="1" />
+          <line x1="16" y1="2" x2="16" y2="8" stroke="rgba(80,120,255,0.25)" strokeWidth="1" />
+          <line x1="16" y1="24" x2="16" y2="30" stroke="rgba(80,120,255,0.25)" strokeWidth="1" />
+          <line x1="2" y1="16" x2="8" y2="16" stroke="rgba(80,120,255,0.25)" strokeWidth="1" />
+          <line x1="24" y1="16" x2="30" y2="16" stroke="rgba(80,120,255,0.25)" strokeWidth="1" />
         </svg>
       </div>
 
@@ -153,8 +154,8 @@ export function Hero() {
 
       {/* Faint arc in top left */}
       <div className="absolute pointer-events-none" style={{ left: "15%", top: "20%" }}>
-        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" style={{ opacity: 0.08 }}>
-          <circle cx="100" cy="100" r="90" stroke="#1A3CFF" strokeWidth="0.5" />
+        <svg width="200" height="200" viewBox="0 0 200 200" fill="none" style={{ opacity: 0.1 }}>
+          <circle cx="100" cy="100" r="90" stroke="#3060FF" strokeWidth="0.5" />
         </svg>
       </div>
 
@@ -191,6 +192,23 @@ export function Hero() {
               <span className="relative z-10">PORTFOLIO</span>
             </h1>
 
+            {/* Blue-white gradient overlay text layer on top for extra brightness */}
+            <h1
+              className="absolute inset-0 font-black leading-none select-none pointer-events-none"
+              aria-hidden="true"
+              style={{
+                fontSize: "clamp(3.5rem, 12vw, 10rem)",
+                letterSpacing: "-0.02em",
+                background: "linear-gradient(180deg, rgba(180,210,255,0.9) 0%, rgba(100,160,255,0.6) 30%, rgba(30,60,255,0.15) 60%, transparent 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+                mixBlendMode: "screen",
+              }}
+            >
+              PORTFOLIO
+            </h1>
+
             {/* Hover glitch flash */}
             {isHovered && (
               <div
@@ -206,7 +224,7 @@ export function Hero() {
           {/* Subtitle */}
           <p
             className="text-lg md:text-2xl tracking-[0.15em] font-light mb-16"
-            style={{ color: "#2a2a3a" }}
+            style={{ color: "rgba(160, 180, 220, 0.8)" }}
           >
             UI DESIGN & IP DESIGN & BRAND DESIGN
           </p>
@@ -216,19 +234,21 @@ export function Hero() {
             onClick={scrollToProjects}
             className="group inline-flex items-center gap-3 px-8 py-3.5 rounded-full text-sm font-medium tracking-wider transition-all duration-300"
             style={{
-              background: "rgba(30, 60, 255, 0.08)",
-              border: "1px solid rgba(30, 60, 255, 0.2)",
-              color: "#1A3CFF",
+              background: "rgba(30, 80, 255, 0.12)",
+              border: "1px solid rgba(60, 100, 255, 0.25)",
+              color: "rgba(140, 180, 255, 0.9)",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.background = "rgba(30, 60, 255, 0.15)"
-              e.currentTarget.style.borderColor = "rgba(30, 60, 255, 0.4)"
-              e.currentTarget.style.boxShadow = "0 8px 32px rgba(30, 60, 255, 0.2)"
+              e.currentTarget.style.background = "rgba(30, 80, 255, 0.25)"
+              e.currentTarget.style.borderColor = "rgba(60, 100, 255, 0.5)"
+              e.currentTarget.style.boxShadow = "0 8px 40px rgba(30, 60, 255, 0.35)"
+              e.currentTarget.style.color = "#ffffff"
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.background = "rgba(30, 60, 255, 0.08)"
-              e.currentTarget.style.borderColor = "rgba(30, 60, 255, 0.2)"
+              e.currentTarget.style.background = "rgba(30, 80, 255, 0.12)"
+              e.currentTarget.style.borderColor = "rgba(60, 100, 255, 0.25)"
               e.currentTarget.style.boxShadow = "none"
+              e.currentTarget.style.color = "rgba(140, 180, 255, 0.9)"
             }}
           >
             <span>EXPLORE WORKS</span>
@@ -236,7 +256,7 @@ export function Hero() {
           </button>
 
           {/* Contact info at bottom */}
-          <div className="mt-20 flex items-center justify-center gap-12 text-sm tracking-wider" style={{ color: "#5a5a7a" }}>
+          <div className="mt-20 flex items-center justify-center gap-12 text-sm tracking-wider" style={{ color: "rgba(120, 140, 180, 0.6)" }}>
             <span className="font-light">{'Wechat: Yuriz0410'}</span>
             <span className="font-light">{'Email: u202410465@hust.edu.cn'}</span>
           </div>

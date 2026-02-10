@@ -30,11 +30,11 @@ export function Navigation() {
         className="transition-all duration-500"
         style={{
           background: scrolled
-            ? (isInHero ? "rgba(240, 243, 255, 0.95)" : "rgba(10, 10, 15, 0.95)")
+            ? "rgba(8, 10, 20, 0.92)"
             : "transparent",
           backdropFilter: scrolled ? "blur(20px)" : "none",
           borderBottom: scrolled
-            ? (isInHero ? "1px solid rgba(30, 60, 255, 0.1)" : "1px solid rgba(100, 180, 255, 0.1)")
+            ? "1px solid rgba(60, 100, 255, 0.12)"
             : "1px solid transparent",
         }}
       >
@@ -42,7 +42,7 @@ export function Navigation() {
           <a
             href="#hero"
             className="text-xl font-bold tracking-wider transition-colors duration-500"
-            style={{ color: isInHero ? "#0a0f2e" : "#ffffff" }}
+            style={{ color: "#ffffff" }}
           >
             Yuriz
           </a>
@@ -53,9 +53,9 @@ export function Navigation() {
                 key={item.href}
                 href={item.href}
                 className="text-sm font-light tracking-wider transition-colors duration-500"
-                style={{ color: isInHero ? "#5a5a7a" : "#9a9aaa" }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "#1A3CFF" }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = isInHero ? "#5a5a7a" : "#9a9aaa" }}
+                style={{ color: "rgba(160, 180, 220, 0.7)" }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "rgba(100, 160, 255, 1)" }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "rgba(160, 180, 220, 0.7)" }}
               >
                 {item.label}
               </a>
