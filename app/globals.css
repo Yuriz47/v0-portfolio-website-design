@@ -320,3 +320,55 @@
   transform: scale(1.02);
   box-shadow: 0 20px 60px rgba(var(--neon-blue), 0.3);
 }
+
+/* Hero perspective grid */
+.hero-perspective-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(30, 60, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 60, 255, 0.06) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center 70%, rgba(0,0,0,0.5) 0%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center 70%, rgba(0,0,0,0.5) 0%, transparent 70%);
+  transform: perspective(800px) rotateX(35deg) translateY(15%);
+  transform-origin: center bottom;
+}
+
+/* Hero floating animation */
+@keyframes heroFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -15px);
+  }
+  50% {
+    transform: translate(-5px, -25px);
+  }
+  75% {
+    transform: translate(15px, -10px);
+  }
+}
+
+/* Hero glitch flash for hover */
+@keyframes heroGlitchFlash {
+  0% {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(5px);
+  }
+}
+
+/* 3D title text stroke styling */
+.hero-title-3d {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
